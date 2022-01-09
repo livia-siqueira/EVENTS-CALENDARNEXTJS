@@ -1,15 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { ListEvents } from '../components/events/ListEvents';
-import { getFeaturedEvents } from '../dummy-data'
-import styles from '../styles/Home.module.css'
 
-export default function Home() {
-
-  const FeaturedEvents = getFeaturedEvents();
+import { ListEvents } from "../components/events/ListEvents";
+import { getFeaturedEvents } from "../helpers/api-util";
+export default function Home({ data }) {
   return (
     <div>
-      <ListEvents items={FeaturedEvents}/>
+      <ListEvents items={data} />
     </div>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  const events = await getFeaturedEvents();
+  return {
+    props: {
+      data: events,
+    },
+    revalidate: 1800
+  };
 }
