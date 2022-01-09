@@ -3,6 +3,7 @@ import { Button } from "../../ui/Button";
 import styles from "./ItemEvent.module.css";
 import DateIcon from "../../icons/date-icon";
 import ArrowRigth from "../../icons/arrow-right-icon";
+import Image from 'next/image'
 
 export const ItemEvent = ({ data }) => {
   const { image, title, id, location, date } = data;
@@ -15,7 +16,7 @@ export const ItemEvent = ({ data }) => {
   const exploreLink = `/events/${id}`;
   return (
     <li className={styles.item}>
-      <img src={`/` + image} alt={title} />
+      <Image src={`/` + image} alt={title} width={250} height={160} />
       <div>
         <div className={styles.content}>
           <h2>{title}</h2>

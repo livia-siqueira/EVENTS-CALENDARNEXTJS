@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/Button";
 import ErrorAlert from "../../components/ui/error-alert/error-alert";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const FilteredEvents = ({ hasError, date, eventsSelected }) => {
   const router = useRouter();
@@ -18,6 +19,12 @@ const FilteredEvents = ({ hasError, date, eventsSelected }) => {
 
   const yearNumb = +filterData[0];
   const monthNumb = +filterData[1];
+  const pageHeader = (
+    <Head>
+      <title>Next Events</title>
+      <meta name="description" content="Find a lot event" />
+    </Head>
+  );
   //client-side
   const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -72,6 +79,7 @@ const FilteredEvents = ({ hasError, date, eventsSelected }) => {
   ) {
     return (
       <>
+        {pageHeader}
         <ErrorAlert> Invalid filter</ErrorAlert>{" "}
         <div className="center">
           <Button link="/events"> Show All Events</Button>
@@ -82,15 +90,17 @@ const FilteredEvents = ({ hasError, date, eventsSelected }) => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+         {pageHeader}
         <ErrorAlert> No events found the chosen filters!!</ErrorAlert>{" "}
         <div className="center">
           <Button link="/events"> Show All Events</Button>
-        </div> 
+        </div>
       </>
     );
   }
   return (
     <div>
+        {pageHeader}
       <ResultsTitle date={new Date(yearNumb, monthNumb - 1)} />
       <ListEvents items={filteredEvents} />
     </div>
