@@ -4,6 +4,7 @@ import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert/error-alert";
 import { Button } from "../../components/ui/Button";
+import Comments from "../../components/input/comments"
 import Head from "next/head";
 const EventPage = ({eventSelected}) => {
   if (!eventSelected) {
@@ -34,6 +35,7 @@ const EventPage = ({eventSelected}) => {
       <EventContent>
         <p>{eventSelected.description}</p>
       </EventContent>
+      <Comments eventId={eventSelected.id}/>
     </>
   );
 };
