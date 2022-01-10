@@ -7,9 +7,9 @@ function CommentList({ items }) {
         console.log(item);
         return (
           <li key={item._id}>
-            <p>{item.comment.text}</p>
+            <p>{item.text}</p>
             <div>
-              By <address>{item.comment.name}</address>
+              By <address>{item.name}</address>
             </div> 
           </li>
         );
